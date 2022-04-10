@@ -12,6 +12,10 @@ Tool for wrapping projects in docker and launching with docker-compose
 - Once we're in, we can setup a project in our repository, but first we need to install the framework cli tool (Vue/cli for Vue. Create react app for react)
 - Once in a shell, install vue/cli using the instructions [here](https://cli.vuejs.org/guide/installation.html)
 - After all the project files are generated, the permissions on those files will match the permissions of the docker user group (usually root). This will be problematic when we actually start writing code. To fix this, we should set all the permissions on all files in the root folder to not require root access.
+```
+sudo chown -R sean:sean *
+sudo chown -R sean:sean .*
+```
 
 
 ## Common issues
