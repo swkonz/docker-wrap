@@ -1,0 +1,30 @@
+version: "3.9"
+
+x-common-variables: &common-variables
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_HOST: postgres
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    environment: 
+      *common-variables
+    ports: 
+      - '5432:5432'
+  app:
+    image: node:lts-stretch
+    volumes:
+      - ./:/app
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    command: "npm start"
+    environment:
+      - *common-variables
+      - PORT=8080
